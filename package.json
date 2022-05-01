@@ -10,6 +10,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "@react-navigation/native": "^6.0.10",
+    "lottie-react-native": "^5.0.1",
     "react": "17.0.2",
     "react-native": "0.68.1"
   },
