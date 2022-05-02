@@ -12,8 +12,8 @@ For building the proyect is necesary to have React Native eviroment,
 you must have Node v12 or newer, Android Studio installed and at least one virtual device.
 
 ## Steps 
--Clone the repository
--Open the code
--Open a new terminal
--Run npm install
--Run npx react-native run-android
+1. Clone the repository
+2. Open the code
+3. Open a new terminal
+4. Run npm install
+5. Run npx react-native run-android
