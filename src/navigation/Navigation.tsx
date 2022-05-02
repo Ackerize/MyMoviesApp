@@ -3,7 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from '../screens/DetailScreen';
-import {Movie} from '../interfaces/movieInterface';
+import { Movie,} from '../interfaces/movieInterface';
 import SearchScreen from '../screens/SearchScreen';
 import LoginScreen from '../screens/LoginScreen';
 import {MovieContext} from '../context/MovieContext';

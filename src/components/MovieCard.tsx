@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,7 +10,8 @@ import {
   Image,
 } from 'react-native';
 import {Title} from 'react-native-paper';
-import {Movie} from '../interfaces/movieInterface';
+import movieDB from '../api/movieDB';
+import {Movie, MovieDetails} from '../interfaces/movieInterface';
 import {RootStackParams} from '../navigation/Navigation';
 import MovieRating from './MovieRating';
 
@@ -18,13 +20,21 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({movie}: MovieCardProps) => {
-  const {vote_average, title, poster_path, release_date, overview, vote_count} =
-    movie;
+  const {
+    vote_average,
+    title,
+    poster_path,
+    release_date,
+    overview,
+    vote_count,
+    id,
+  } = movie;
+
 
   const navigation = useNavigation<StackNavigationProp<RootStackParams>>();
 
-  const onNavigation = () => {
-    // navigation.navigate('DetailScreen', movie);
+  const onNavigation = async () => {
+    navigation.navigate('DetailScreen', movie);
   };
 
   return (
