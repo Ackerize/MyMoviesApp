@@ -34,7 +34,7 @@ const DetailScreen = ({route, navigation}: Props) => {
       try {
         const {
           data: {results},
-        } = await movieDB.get<MovieDBResponse>(`/${movie.id}/similar`);
+        } = await movieDB.get<MovieDBResponse>(`/movie/${movie.id}/similar`);
         setRelatedMovies(results);
         setLoading(false);
       } catch (error) {
@@ -54,7 +54,7 @@ const DetailScreen = ({route, navigation}: Props) => {
       try {
         const {
           data,
-        } = await movieDB.get<MovieDetails>(`/${movie.id}`);
+        } = await movieDB.get<MovieDetails>(`/movie/${movie.id}`);
         setMovieDetails(data);
       } catch (error) {
         if (axios.isAxiosError(error)) {

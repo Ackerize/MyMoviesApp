@@ -1,22 +1,28 @@
 import axios from 'axios';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import movieDB from '../api/movieDB';
 import {Movie, MovieDBResponse} from '../interfaces/movieInterface';
-import {Text, Title, Button} from 'react-native-paper';
+import {Searchbar, Title, Button} from 'react-native-paper';
 import MovieCard from '../components/MovieCard';
+import { MovieContext } from '../context/MovieContext';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParams } from '../navigation/Navigation';
 
-const HomeScreen = () => {
+interface Props extends StackScreenProps<RootStackParams, 'HomeScreen'> {}
+
+const HomeScreen = ({ navigation } : Props) => {
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [showMore, setShowMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
+  const { searchValue, setSearchValue } = useContext(MovieContext);
 
   useEffect(() => {
     const getPopularMovies = async () => {
       try {
         const {
           data: {results, total_pages},
-        } = await movieDB.get<MovieDBResponse>('/popular', {
+        } = await movieDB.get<MovieDBResponse>('/movie/popular', {
           params: {
             page,
           },
@@ -39,8 +45,25 @@ const HomeScreen = () => {
     getPopularMovies();
   }, [page]);
 
+  useEffect(() => {
+    if(searchValue.length > 0) {
+      setSearchValue('');
+    }
+  }, []);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
+      <Searchbar
+        placeholder="Search"
+        icon="magnify"
+        value={searchValue}
+        style={styles.input}
+        onChangeText={setSearchValue}
+        onIconPress={() => {
+          navigation.navigate('SearchScreen');
+        }}
+      />
+
       {popularMovies.length > 0 && (
         <View style={styles.popular}>
           <Title style={styles.popularTitle}>Popular movies</Title>
@@ -81,5 +104,11 @@ const styles = StyleSheet.create({
   },
   loadMore: {
     backgroundColor: 'transparent',
+  },
+  input: {
+    marginTop: 20,
+    marginBottom: 10,
+    alignSelf: 'center',
+    width: '90%'
   },
 });
