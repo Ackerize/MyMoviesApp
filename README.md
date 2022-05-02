@@ -2,8 +2,8 @@
 
 ## About 
 This project is a React Native app that shows popular movies and also has a search bar to search for any movie.
-it uses Context API as a state management.
-to access the application you have to autenticate with the following credentials: </br>
+It uses Context API as a state management.
+To access the application you have to autenticate with the following credentials: </br>
 email: **eve.holt@reqres.in** </br>
 password: **cityslicka**
 
