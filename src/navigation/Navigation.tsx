@@ -19,7 +19,6 @@ const Stack = createStackNavigator<RootStackParams>();
 
 export const Navigation = () => {
   const { token } = useContext(MovieContext);
-  console.log(token);
 
   if (!token) {
     return (
